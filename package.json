@@ -1,0 +1,17 @@
+{
+  "name": "node-intro",
+  "version": "1.0.0",
+  "description": "Intro to node",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha ./tests"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "assert": "^1.3.0"
+  },
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
