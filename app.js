@@ -34,9 +34,9 @@ router.route('/songs/list').get(function(request, response){
   return response.status(200).send(makeReadableList(songs));
 
   function makeReadableList(songs){
-    var songHtml = "";
-    _.each(songs, function(value, key){songHtml = songHtml + key + "<br>"});
-    return songHtml;
+    var songHtml = "<ul style=\"color:blue\">";
+    _.each(songs, function(value, key){songHtml = songHtml +"<li>" + key + "</li>"});
+    return songHtml+"</ul>";
   }
 });
 
@@ -52,9 +52,9 @@ router.route('/songs/add').post(function(request, response){
   return response.status(200).send(payload.name + " has been added!");
 });
 
-// router.route('/songs/list').get(function(request, response){
-//
-// });
+router.route('/playlists/add').get(function(request, response){
+
+});
 
 app.use('/', router);
 app.listen(port, function () {
