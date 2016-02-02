@@ -3,15 +3,18 @@
 // create a quee of songs which are waiting
 
 var express = require('express');
+var mongoose = require('mongoose');
 var musicLibrary = require('./lib/music-library.js');
 var _ = require("underscore");
+var songStore = require('./lib/song_handler.js');
 
 var app = express();
 var port = 3000;
+var mongoPort = 27009;
 var router = express.Router();
 var playlist = [];
 var songs = musicLibrary.list();
-
+mongoose.connect('mongodb://localhost:'+mongoPort+'/musicDatabase');
 // router.route('/disco').get(function(request, response){
 //   console.log("I got a request on /disco");
 // });
@@ -48,8 +51,12 @@ router.route('/songs/add').post(function(request, response){
   if (!payload.name || !payload.time){
     return response.status(400).send("Song name and time is required");
   }
-  songs[payload.name] = payload.time;
-  return response.status(200).send(payload.name + " has been added!");
+  songStore.save({
+    name: payload.name,
+    time: payload.time
+  }, function(){
+    return response.status(200).send(payload.name + " has been added!");
+  });
 });
 
 router.route('/playlists/add').get(function(request, response){
