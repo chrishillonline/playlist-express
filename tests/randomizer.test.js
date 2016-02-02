@@ -3,9 +3,9 @@ var randomizer = require('../lib/randomizer.js');
 var songLibrary = {
   list: function(){
     return {
-      "wonderwall": true,
-      "definately maybee": true,
-      "fix you": true
+      "wonderwall": 13,
+      "definately maybee": 21,
+      "fix you": 18
     }
   }
 }
@@ -25,7 +25,6 @@ describe("Getting a random song", function(){
       var acceptableResults = [
         "wonderwall","definately maybee","fix you"
       ]
-
       assert.notEqual(acceptableResults.indexOf(result), -1);
     });
   });
